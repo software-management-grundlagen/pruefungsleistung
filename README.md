@@ -23,4 +23,4 @@ git tag release1 -m Erstellen von "release1"
  Als nächstes wurde die Main - Methode in App.java fuer die Eingabe von Bruch und deren Kuerzen angepasst dabei wurde nur die eingabe() von Rational.java verwendet sowie paar Ueberschriften am Anfang und Ende
  der Main mit System.out eingefuegt. Die Ueberschft in eingabe() von Rational.java wurde von "Ihre Eingabe:" zu "Ergebniss:" geaendert.
 
-Anschliesslich wurde "release1" mit "git tag" - command erstellt und gepushed.
+Anschliesslich wurde "release1" mit "git tag" - command erstellt und hochgeladen.
