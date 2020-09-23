@@ -4,3 +4,8 @@
  2 files changed, 19 insertions(+)
  create mode 100644 SMG_ZahlenAufgabe/README.md
  create mode 100644 SMG_ZahlenAufgabe/src/App.java
+ 
+[master 1e6368d] "Rational.java und Zahl.java wurden zu "numbers" eingefuegt"
+ 2 files changed, 219 insertions(+)
+ create mode 100644 SMG_ZahlenAufgabe/src/numbers/Rational.java
+ create mode 100644 SMG_ZahlenAufgabe/src/numbers/Zahl.java
