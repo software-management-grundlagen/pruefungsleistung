@@ -194,7 +194,7 @@ public class Rational extends Zahl {
 
 		sc.close();
 
-		System.out.println("Ihre Eingabe:");
+		System.out.println("Ergebniss:");
 		kuerzen();
 		print();
 
