@@ -1,14 +1,6 @@
-## Getting Started
+## Aenderungsablauf
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
-
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-## Dependency Management
-
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).
+[master (Root-Commit) d596c99] Anfaenglicher commit fuer SMG_ZahlenAufgaben
+ 2 files changed, 19 insertions(+)
+ create mode 100644 SMG_ZahlenAufgabe/README.md
+ create mode 100644 SMG_ZahlenAufgabe/src/App.java
