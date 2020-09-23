@@ -9,3 +9,9 @@
  2 files changed, 219 insertions(+)
  create mode 100644 SMG_ZahlenAufgabe/src/numbers/Rational.java
  create mode 100644 SMG_ZahlenAufgabe/src/numbers/Zahl.java
+
+[master a1dc0bc] "Ueberschrift "Ihre Eingabe:" geaendert zu "Ergebniss:" in eingabe()"
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[master f77148b] "Method main wurde fuer die Eingabe und Ausgabe von Bruch implementiert"
+ 1 file changed, 6 insertions(+), 1 deletion(-)
