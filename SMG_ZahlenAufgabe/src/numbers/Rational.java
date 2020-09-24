@@ -4,50 +4,74 @@ import java.util.Scanner;
 
 public class Rational extends Zahl {
 
+	/** @param p Zähler als Integer*/
 	private int p;
+	/** @param p Nenner als Integer*/
 	private int q;
 
+	/**Default Konstruktor */
 	public Rational() {
 		this.p = 1;
 		this.q = 1;
 
 	}
 
+	/**Konstruktor nimmt eine ganze Zahl als paramater an.
+	 * @param z ein Integer als Zähler 
+	*/
 	public Rational(int z) {
 		this.p = z;
 		this.q = 1;
 	}
-
+	/**Konstruktor nimmt zwei ganze Zahlen als Zähler und Nenner.
+	 * @param z ein Integer als Zähler. 
+	 * @param n ein Integer als Nenner. 
+	*/
 	public Rational(int z, int n) {
 		this.p = z;
 		this.q = n;
 		assert (n != 0);
 		kuerzen();
 	}
-	
+
+	/**Konstruktor nimmt ein Object von Typ Rational und setzt die Werte für Zähler und Nenner.
+	 * @param other ein Object von Typ Rational. 
+	 * @param n ein Integer als Nenner. 
+	 */
 	public Rational(Rational other) {
 		this(other.zaehler(), other.nenner());
 	}
 
+	/**Methode für die Ausgabe eines Bruchs auf Konsole.
+	 * \return String als die Darstellung einer Bruchzahl. 
+	*/
 	public void print() {
 		System.out.println(p + "/" + q);
 	}
-	
+
+	/**Überschreiben der Funktion toString für die Ausgabe von Bruchzahl auf die Konsole.
+	 * \return String als die Darstellung einer Bruchzahl.
+	*/
 	@Override
 	public String toString() {
 		String text = "";
 		text = String.valueOf(p) + "/" + String.valueOf(q);
 		return text;
 	}
-	
+
+	/**\return Integer als Zähler */
 	public int zaehler() {
 		return p;
 	}
-	
+
+	/**\return Integer als Nenner */
 	public int nenner() {
 		return q;
 	}
 
+	/**Methode für die Addition einer Bruchzahl.
+	 * Dabei wird das Ergebniss auch gekürzt.
+	*/
 	public void add(Zahl z) {
 		Rational local = (Rational) z;
 		p = p * local.q + local.p * q;
@@ -55,13 +79,16 @@ public class Rational extends Zahl {
 		kuerzen();
 
 	}
-
+	/**Methode für die Addition einer ganzen Zahl */
 	public void add(int i) {
 		Rational local = new Rational(i);
 		add(local);
 		kuerzen();
 	}
 
+	/**Methode für die Subtraktion mit einer Bruchzahl.
+	 * Dabei wird das Ergebnis auch gekürzt.
+	*/
 	public void sub(Zahl z) {
 		Rational local = (Rational) z;
 		p = p * local.q - local.p * q;
@@ -69,12 +96,16 @@ public class Rational extends Zahl {
 		kuerzen();
 	}
 
+	/**Methode für die Subtraktion mit der ganzen Zahl */
 	public void sub(int i) {
 		Rational local = new Rational(i);
 		sub(local);
 		kuerzen();
 	}
-	
+
+	/**Methode für die Multiplikation mit einer Bruchzahl.
+	 * Dabei wird das Ergebnis auch gekürzt.
+	*/
 	public void mul(Zahl z) {
 		Rational local = (Rational) z;
 		p = p * local.p;
@@ -82,25 +113,31 @@ public class Rational extends Zahl {
 		kuerzen();
 	}
 
+	/**Methode für die Multiplikation mit der ganzen Zahl */
 	public void mul(int i) {
 		Rational local = new Rational(i);
 		mul(local);
 		kuerzen();
 	}
 
+	/**Methode für die Division mit einer Bruchzahl.
+	 * Dabei wird das Ergebnis auch gekürzt.
+	*/
 	public void div(Zahl z) {
 		Rational local = (Rational) z;
 		p = p * local.q;
 		q = q * local.p;
-		kuerzen();		
+		kuerzen();
 	}
 
+	/**Methode für die Division mit der ganzen Zahl */
 	public void div(int i) {
 		Rational local = new Rational(i);
 		div(local);
 		kuerzen();
 	}
 
+	/**Methode zum ermitteln von Kehrwert einer Bruchzahl */
 	public void kehrwert() {
 		int temp = p;
 		p = q;
@@ -108,10 +145,12 @@ public class Rational extends Zahl {
 		assert (q != 0);
 	}
 
+	/**Methode zum ändern von Vorzeichen einer Zahl*/
 	public void switchSign() {
 		p = -p;
 	}
-	
+
+	/**Funktion für die Kürzung von Bruchzahl*/
 	public void kuerzen() {
 		// Vorzeichen merken und Betrag bilden
 		int sign = 1;
@@ -132,17 +171,29 @@ public class Rational extends Zahl {
 
 	}
 
+	/**Methode wandelt eine Bruchzahl in Dezimalbruch.
+	 * \return Double als Dezimalbruch.
+	 * @return
+	*/
 	public double getDoubleWert() {
 		return (double) p / (double) q;
 	}
 
+	/**Funktion überprüft ob eine Bruchzahl in eine ganze/natürliche Zahl umgewandelt werdenn kann.
+	 * \return True für den Fall wenn Zähler durch Nenner ohne Rest geteilt wird.
+	 * @return
+	*/
 	public boolean isInteger() {
-		if (p % q == 0) 
+		if (p % q == 0)
 			return true;
 		else
 			return false;
 	}
-	
+
+	/**
+	 * Funktion für die Berechnung von grössten gemeinsamen Teiler 
+	 * \return Integer 
+	*/
 	private int ggt(int x, int y) {
 
 		while (y > 0) {
@@ -153,6 +204,10 @@ public class Rational extends Zahl {
 		return x;
 	}
 
+	/**
+	 * Funktion für die Addition von zwei Rationalen Zahlen 
+	 * \return Objekt von Typ "Rational"
+	*/
 	public Rational add(Rational a, Rational b) {
 
 		a.add(b);
@@ -160,6 +215,10 @@ public class Rational extends Zahl {
 
 	}
 
+	/**
+	 * Funktion für die Subtraktion von zwei Rationalen Zahlen 
+	 * \return Objekt von Typ "Rational"
+	 */
 	public Rational sub(Rational a, Rational b) {
 
 		a.sub(b);
@@ -167,6 +226,10 @@ public class Rational extends Zahl {
 
 	}
 
+	/**
+	 * Funktion für die Division von zwei Rationalen Zahlen 
+	 * \return Objekt von Typ "Rational"
+	*/
 	public Rational div(Rational a, Rational b) {
 
 		a.div(b);
@@ -174,6 +237,10 @@ public class Rational extends Zahl {
 
 	}
 
+	/**
+	 * Funktion für die Multiplikation von zwei Rationalen Zahlen 
+	 * \return Objekt von Typ "Rational"
+	 */
 	public Rational mul(Rational a, Rational b) {
 
 		a.mul(b);
@@ -181,6 +248,10 @@ public class Rational extends Zahl {
 
 	}
 
+	/**
+	 * Methode liest die Eingaben für Zähler und Nenner von Konsole ab und gibt
+	 * ein Ergebnis in Form eines gekürszten Bruches auf die Konsole aus.
+	*/
 	public void eingabe() {
 		Scanner sc = new Scanner(System.in);
 
