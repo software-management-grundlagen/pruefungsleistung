@@ -24,3 +24,7 @@
 
 [maven e09c06d] "Anpassen von jdk - version von 1.8 auf 11"
  3 files changed, 6 insertions(+), 6 deletions(-)
+
+[maven 4c1b740] "Einfuegen von Doxygen - plugin zu pom.xml"
+ 1 file changed, 90 insertions(+), 66 deletions(-)
+ rewrite SMG_ZahlenAufgabe/pom.xml (83%)
