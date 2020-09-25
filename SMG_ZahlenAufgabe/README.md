@@ -15,24 +15,10 @@
  create mode 100644 SMG_ZahlenAufgabe/.settings/org.eclipse.jdt.apt.core.prefs
  create mode 100644 SMG_ZahlenAufgabe/.settings/org.eclipse.jdt.core.prefs
  create mode 100644 SMG_ZahlenAufgabe/.settings/org.eclipse.m2e.core.prefs
-[maven edc9d6a] Einfuegen von properties und dependencies tags zu pom.xml
+
+[maven edc9d6a] "Einfuegen von properties und dependencies tags zu pom.xml"
  1 file changed, 9 insertions(+)
-[maven 1613acd] Einfuegen von build mit plugin management zu  pom.xml
+
+[maven 1613acd] "Einfuegen von build mit plugin management zu pom.xml"
  1 file changed, 45 insertions(+)
-Auf Branch maven
-Ihr Branch ist 2 Commits vor 'origin/maven'.
-  (benutzen Sie "git push", um lokale Commits zu publizieren)
 
-Änderungen, die nicht zum Commit vorgemerkt sind:
-  (benutzen Sie "git add <Datei>...", um die Änderungen zum Commit vorzumerken)
-  (benutzen Sie "git restore <Datei>...", um die Änderungen im Arbeitsverzeichnis zu verwerfen)
-	geändert:       .classpath
-	geändert:       .gitignore
-	geändert:       .settings/org.eclipse.jdt.core.prefs
-	geändert:       README.md
-
-Unversionierte Dateien:
-  (benutzen Sie "git add <Datei>...", um die Änderungen zum Commit vorzumerken)
-	.settings/org.eclipse.core.resources.prefs
-
-keine Änderungen zum Commit vorgemerkt (benutzen Sie "git add" und/oder "git commit -a")
