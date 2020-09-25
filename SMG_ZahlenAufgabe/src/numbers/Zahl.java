@@ -6,18 +6,18 @@ package numbers;
  */
 public abstract class Zahl {
 	
-	/**Metode für die Addition von Zahlen.*/
+	/**Methode für die Addition von Zahlen.*/
 	 public abstract void add(Zahl a);
 	 
-	/**Metode für die Subtraktion von Zahlen.*/
+	/**Methode für die Subtraktion von Zahlen.*/
 	 public abstract void sub(Zahl z);
 	 
-	/**Metode für die Multiplikation von Zahlen.*/
+	/**Methode für die Multiplikation von Zahlen.*/
 	 public abstract void mul(Zahl z);
 	 
-	/**Metode für die Division von Zahlen.*/
+	/**Methode für die Division von Zahlen.*/
 	 public abstract void div(Zahl z);	 
 		 
-	 /**Metode zum ausgeben von Zahlen.*/
+	 /**Methode zum ausgeben von Zahlen.*/
 	 public abstract void print();
 }
