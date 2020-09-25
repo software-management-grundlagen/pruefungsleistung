@@ -37,3 +37,23 @@
  2 files changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 SMG_ZahlenAufgabe/src/main/resources/img/doxygen/bruch.png
  create mode 100644 SMG_ZahlenAufgabe/src/main/resources/img/doxygen/bruch_demo.gif
+
+[maven 1cb6c12] "RationalTest.java ist nach /src/test/numbers kopiert"
+ 1 file changed, 155 insertions(+)
+ create mode 100644 SMG_ZahlenAufgabe/src/test/java/numbers/RationalTest.java
+
+[maven fa7d590] "Einfuegen von dependency fuer junit"
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+git tag release4
+git push origin release4
+
+## Zusammenfassung fuer die Aufgabe: "Maven als Build-Werkzeug" (Aufgabe wurde gemacht vor der Aufgabe fuer LOGBack)
+Nachdem Erstellen von maven-branch wurde die Projektstruktur zu der Mavenstruktur angepasst und als nächstes pom.xml
+eingefuegt. Das Projekt wurde mit visual studio code zu Eclipse - Projekt angepasst. Zu der pom.xml wurde als nächstes
+die Build-Plugins eingefügt als auch Doxygen - Plugin. Die Einstellungen fuer Doxygen wurden in Doxyfile angepasst, dies betrifft INPUT, IMAGE_PATH, EXAMPLE_PATH und OUTPUT_DIRECTORY. Die Dokumentation wird nach dem ausfueren von 
+"mvn doxygen:generate" in target/site als SMG_ZahlenAufgabe gespeichert. Target selbst ist in .gitignore eingetragen.
+Nach der Ueberpruefung der mvn - befehele wurde der RationalTest. java nach src/test/numbers eingefuegt, eine Abhaengigkeit
+fuer junit wurde dementsprechend nach pom.xml eingetragen. Alle Tests sind ohne fehler gelaufen.
+
+
