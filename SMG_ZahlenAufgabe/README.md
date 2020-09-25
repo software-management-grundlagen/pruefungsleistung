@@ -22,3 +22,5 @@
 [maven 1613acd] "Einfuegen von build mit plugin management zu pom.xml"
  1 file changed, 45 insertions(+)
 
+[maven e09c06d] "Anpassen von jdk - version von 1.8 auf 11"
+ 3 files changed, 6 insertions(+), 6 deletions(-)
