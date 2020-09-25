@@ -28,3 +28,12 @@
 [maven 4c1b740] "Einfuegen von Doxygen - plugin zu pom.xml"
  1 file changed, 90 insertions(+), 66 deletions(-)
  rewrite SMG_ZahlenAufgabe/pom.xml (83%)
+
+[maven 8216efb] "Einfuegen von Doxyfile"
+ 1 file changed, 2579 insertions(+)
+ create mode 100644 SMG_ZahlenAufgabe/Doxyfile
+
+[maven 2809031] "Einfuegen von Bilder fuer die Dokumentation mit Doxygen"
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 SMG_ZahlenAufgabe/src/main/resources/img/doxygen/bruch.png
+ create mode 100644 SMG_ZahlenAufgabe/src/main/resources/img/doxygen/bruch_demo.gif
