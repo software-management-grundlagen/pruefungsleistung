@@ -1,7 +1,14 @@
 package numbers;
 
 import java.util.Scanner;
-
+/**
+ * Klasse Ratioanal erweitert abstrakte Basisklasse {@link numbers.Zahl Zahl}
+ * und implementiert vier Grundrechenarten für die Zahlen, ergänzend beinhaltet
+ * die Klasse auch die Methoden für die Eingabe und Ausgabe von Zahlen, sowie
+ * die weiter hier dokumentierte Methoden für die Kürzung von Bruchzahlen, deren Umwandlung
+ * in dezimale Bruchzahl, sowie die weiteren notwendigen manipulations Methoden wie z.B
+ * herausfinden von grösten gemeinsamen Teiler.
+ */
 public class Rational extends Zahl {
 
 	/** @param p Zähler als Integer*/
