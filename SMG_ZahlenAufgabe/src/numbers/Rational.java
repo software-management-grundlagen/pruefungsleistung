@@ -6,7 +6,7 @@ import java.util.Scanner;
  * und implementiert vier Grundrechenarten für die Zahlen, ergänzend beinhaltet
  * die Klasse auch die Methoden für die Eingabe und Ausgabe von Zahlen, sowie
  * die weiter hier dokumentierte Methoden für die Kürzung von Bruchzahlen, deren Umwandlung
- * in dezimale Bruchzahl, sowie die weiteren notwendigen manipulations Methoden wie z.B
+ * in dezimale Bruchzahl, sowie die weiteren notwendigen manipulations Methoden wie z.B.
  * herausfinden von grösten gemeinsamen Teiler.
  */
 public class Rational extends Zahl {
@@ -43,7 +43,6 @@ public class Rational extends Zahl {
 
 	/**Konstruktor nimmt ein Object von Typ Rational und setzt die Werte für Zähler und Nenner.
 	 * @param other ein Object von Typ Rational. 
-	 * @param n ein Integer als Nenner. 
 	 */
 	public Rational(Rational other) {
 		this(other.zaehler(), other.nenner());
@@ -257,7 +256,7 @@ public class Rational extends Zahl {
 
 	/**
 	 * Methode liest die Eingaben für Zähler und Nenner von Konsole ab und gibt
-	 * ein Ergebnis in Form eines gekürszten Bruches auf die Konsole aus.
+	 * ein Ergebnis in Form eines gekürzten Bruches auf die Konsole aus.
 	*/
 	public void eingabe() {
 		Scanner sc = new Scanner(System.in);
@@ -278,4 +277,35 @@ public class Rational extends Zahl {
 
 	}
 
+	/**
+	* \mainpage
+	* <h1>SMG ZahlenAufgabe</h1>
+	*
+	* <h3>Einfache Anwendung für die Kürzung von Benutzer eingegebenen Bruchzahl.</h3>
+	*
+	* \image html bruch.png
+	*
+	* Die Anwendung "ZahlenAufgaben" liest nach dem ausführen die Eingaben von Benutzer/in für Zähler und Nenner
+	* und gibt das Ergebnis in Form einer gekürzten Bruchzahls aus. Die Eingabe sowie die Ausgabe erfolgt über die Konsole.
+	*
+	* Die Methoden für die Manipulation mit den Zahlen sowie deren Ein/Ausgabe als auch dieser Text ist in Rational.java zu finden.
+	* Etwas konkreter implementiert Rational.java  vier Grundrechenarten für die Zahlen und ergänzend 
+	* dazu beinhaltet auch die Methoden für die Eingabe und Ausgabe von Zahlen, sowie
+ 	* weitere Methoden für die Kürzung von Bruchzahlen, deren Umwandlung
+ 	* in eine dezimale Bruchzahl, sowie die weiteren notwendigen manipulations Methoden wie z.B.
+	* herausfinden von grösten gemeinsamen Teiler.
+	*/
+
+	/**
+	 * \example App.java
+	 * \image html bruch_demo.gif "ZahlenAufgabe - Demonstration"
+	 * Dabei handelt es sich um eine Demonstration von Anwendung selbs.
+	 * Die Main - Methode besteht aus Begrüßung und Verabschiedung mittels Konsolenausgabe
+	 * mit System.out.println sowie den Einsatz von Methode eingabe() von der Klasse "Rational".
+	 * Die Methode eingabe() ruft die Methoden, kuerzen() und print() denselben Klassen und beinhaltet
+	 * Logik für die Eingabe von Zähler und Nenner, sowie deren Kürzung und ausgabe aufgrund der Aufruf
+	 * von oben genannten Methoden
+	 * 
+	 * 
+	 */
 }
