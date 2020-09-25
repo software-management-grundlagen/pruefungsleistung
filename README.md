@@ -214,7 +214,7 @@ Anschliesslich wurde "release1" mit "git tag" - command erstellt und hochgeladen
 
  git push origin release2
  
- ##Zusammenfassung: Aufgabe Doxygen
+ ## Zusammenfassung: Aufgabe Doxygen
  Das vorhandene Project "SMG_ZahlenAufgabe" wurde mit JavaDoc - Kommentaren ergaenz. Die Komentare wurden für alle Methoden sowie Klassen eingefügt.
  Dazu um die Dokumentation mit Doxygen zu erstellen wurden die Kommentare auch angepasst, eine Konfigurationsdatei fuer Doxygen - Einstellungen ist auch
  im Dokumentationsordner gespeichert. Die Dokumentation selbst befindet sich im Ordner SMG_ZahlenAufgabe_Dokumentation.
