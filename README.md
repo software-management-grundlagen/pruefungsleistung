@@ -219,3 +219,6 @@ Anschliesslich wurde "release1" mit "git tag" - command erstellt und hochgeladen
  Dazu um die Dokumentation mit Doxygen zu erstellen wurden die Kommentare auch angepasst, eine Konfigurationsdatei fuer Doxygen - Einstellungen ist auch
  im Dokumentationsordner gespeichert. Die Dokumentation selbst befindet sich im Ordner SMG_ZahlenAufgabe_Dokumentation.
 
+ 
+ ## Es wird weiter ab dem Schritt 11 (Maven) fortgefuert, da die Integration von notwendigen Bibliotheken wie z.B. LOGBack, mit der Integration ueber pom.xml bequemer ist.
+ ## Deswegen werden die Schritte fuer Maven und Logging vertauscht.
