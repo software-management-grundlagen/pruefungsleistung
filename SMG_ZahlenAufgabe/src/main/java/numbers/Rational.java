@@ -315,7 +315,7 @@ public class Rational extends Zahl {
 			q = i;
 
 			if (q == 0) {
-				errorLogger.error("Methode eingabe(): es wurde eine 0 nenner eingegeben -> q=" + q);
+				errorLogger.error("Methode eingabe(): es wurde eine 0 fuer nenner eingegeben -> q=" + q);
 				sc.close();
 				throw new Exception();
 			}
