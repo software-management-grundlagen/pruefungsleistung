@@ -309,10 +309,14 @@ fuer junit wurde dementsprechend nach pom.xml eingetragen. Alle Tests sind ohne 
 [logback 8266b80] "Anpassen von logbag.xml fuer die ausgabe in Datei"
  1 file changed, 12 insertions(+), 4 deletions(-)
 
-## Zusammenfassung: Aufgabe fue Hinzufuegen von Logger(LOGBack)
+## Zusammenfassung: Aufgabe fuer Hinzufuegen von Logger(LOGBack)
 Diese Aufgabe wurde nachder folgenden Aufgabe: "Umwandlung nach Maven - Projekt" erledigt, da das Einfuegen von notwendigen
 Bibliotheken via Mvn - Dependencies bequeme ist.
 Als erstes wurden die Abhaengigkeiten fuer LOGBack und slf4j in pom.xml integriert und logback.xml in Verzeichnis resources eingerichtet. Dabei wurden drei Logger mit Namen: App (Level: INFO), numbers.Rational (Level: ERROR), RationalInfo 
 (Level: INFO) erstellt. Das Root - Level ist auf debug gestellt. Logger wurden in Methoden ggt(), kuerzen() und eingabe() in
 Klasse Rational und einschliesslich in main eingefuegt (Da diese Methoden fuer die Anwendung relevant sind). Logger wurde erstmal auf Konsole getestet und dannach wurde die logback.xml fuer die logging in log - datei angepasst. Log wird nach 
 Einstellungen in log Verzeichnis gespeichert, diese ist in .gitignore eingetragen.
+
+## Zusammenfassung: Aufgabe Jenkins
+
+
