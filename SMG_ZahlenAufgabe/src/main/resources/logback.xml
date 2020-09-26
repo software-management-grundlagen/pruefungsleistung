@@ -1,5 +1,9 @@
 <configuration>
-    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>./logs/logback.log</file>
+        <append>true</append>
+        <immediateFlush>true</immediateFlush>
+        <prudent>true</prudent>
         <layout class="ch.qos.logback.classic.PatternLayout">
             <Pattern>
                 %d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n
@@ -8,14 +12,18 @@
     </appender>
 
     <logger name="numbers.Rational" level="error" additivity="false">
-        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <logger name="RationalInfo" level="info" additivity="false">
+        <appender-ref ref="FILE" />
     </logger>
 
     <logger name="App" level="info" additivity="false">
-        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE" />
     </logger>
 
     <root level="debug">
-        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE" />
     </root>
 </configuration>
