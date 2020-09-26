@@ -7,7 +7,7 @@
         </layout>
     </appender>
 
-    <logger name="numbers.Rational" level="debug" additivity="false">
+    <logger name="numbers.Rational" level="error" additivity="false">
         <appender-ref ref="CONSOLE"/>
     </logger>
 
@@ -15,7 +15,7 @@
         <appender-ref ref="CONSOLE"/>
     </logger>
 
-    <root level="error">
-        <appender-ref ref="STDOUT"/>
+    <root level="debug">
+        <appender-ref ref="CONSOLE"/>
     </root>
 </configuration>
