@@ -21,7 +21,8 @@ public class Rational extends Zahl {
 	/** @param p Nenner als Integer */
 	private int q;
 
-	private static final Logger logger = (Logger) LoggerFactory.getLogger(Rational.class);
+	private static final Logger errorLogger = (Logger) LoggerFactory.getLogger(Rational.class);
+	private static final Logger infoLogger = (Logger) LoggerFactory.getLogger("RationalInfo");
 
 	/** Default Konstruktor */
 	public Rational() {
@@ -97,12 +98,10 @@ public class Rational extends Zahl {
 	 * gekürzt.
 	 */
 	public void add(Zahl z) {
-		logger.debug("add() ist gestartet");
 		Rational local = (Rational) z;
 		p = p * local.q + local.p * q;
 		q = q * local.q;
 		kuerzen();
-		logger.debug("add() ist beendet");
 	}
 
 	/** Methode für die Addition einer ganzen Zahl */
@@ -181,6 +180,7 @@ public class Rational extends Zahl {
 
 	/** Funktion für die Kürzung von Bruchzahl */
 	public void kuerzen() {
+		infoLogger.info("kuerzen() ist gestartet");
 		// Vorzeichen merken und Betrag bilden
 		int sign = 1;
 		if (p < 0) {
@@ -191,13 +191,21 @@ public class Rational extends Zahl {
 			sign = -sign;
 			q = -q;
 		}
-
-		int teiler = ggt(p, q);
+		
+		int	teiler = ggt(p, q);
+		
+		if (teiler == 0) // Zwar hier unmoeglich, aber trotzdem...
+		{
+			errorLogger.error("ggt(): Teiler war 0");
+			infoLogger.info("ggt(): Anwendung wird beendet");
+			System.exit(1);
+		}
 
 		// Vorzeichen restaurieren
 		p = sign * p / teiler;
 		q = q / teiler;
 
+		infoLogger.info("kuerzen() ist beendet.");
 	}
 
 	/**
@@ -228,13 +236,19 @@ public class Rational extends Zahl {
 	 * Funktion für die Berechnung von grössten gemeinsamen Teiler \return Integer
 	 */
 	private int ggt(int x, int y) {
-
+		infoLogger.info("ggt() ist gestartet");
+		if (x == 0 || y == 0) {
+			errorLogger.error("Methode ggt(): Es wurde eine 0 eingegeben -> x = " + x + " y = " + y);
+		}
 		while (y > 0) {
 			int rest = x % y;
 			x = y;
 			y = rest;
 		}
+		infoLogger.info("ggt() Ergebniss: " + x + " ist zurueck gegeben");
+		infoLogger.info("ggt() ist beendet");
 		return x;
+
 	}
 
 	/**
@@ -287,12 +301,12 @@ public class Rational extends Zahl {
 	 */
 	public void eingabe() {
 
-		logger.info("eingabe() ist gestartet");
-		Scanner sc = new Scanner(System.in);
-
-		System.out.println("Geben Sie den Zaehler ein:");
+		infoLogger.info("eingabe() ist gestartet");
 
 		try {
+			Scanner sc = new Scanner(System.in);
+
+			System.out.println("Geben Sie den Zaehler ein:");
 			int i = sc.nextInt();
 			p = i;
 
@@ -300,19 +314,23 @@ public class Rational extends Zahl {
 			i = sc.nextInt();
 			q = i;
 
+			if (q == 0) {
+				errorLogger.error("Methode eingabe(): es wurde eine 0 nenner eingegeben -> q=" + q);
+				sc.close();
+				throw new Exception();
+			}
 			sc.close();
 
 			System.out.println("Ergebniss:");
 			kuerzen();
 			print();
-			logger.info("eingabe() ist beendet");
-		} 
-		catch (Exception ex) {
-			logger.error("Bei der Eingabe handelte es sich nicht um eine Zahl\n");
+			infoLogger.info("eingabe() ist beendet");
+		} catch (Exception ex) {
+			if (!(q == 0 || p == 0)) {
+				errorLogger.error("Methode eingabe(): Bei der Eingabe handelte es sich nicht um eine Zahl.\n");
+			}
 			ex.printStackTrace();
 		}
-
-		logger.trace("eingabe ist beendet");
 	}
 
 	/**
