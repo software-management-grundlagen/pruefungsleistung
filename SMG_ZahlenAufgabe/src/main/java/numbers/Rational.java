@@ -1,39 +1,51 @@
 package numbers;
 
 import java.util.Scanner;
+
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
+
 /**
  * Klasse Ratioanal erweitert abstrakte Basisklasse {@link numbers.Zahl Zahl}
  * und implementiert vier Grundrechenarten für die Zahlen, ergänzend beinhaltet
  * die Klasse auch die Methoden für die Eingabe und Ausgabe von Zahlen, sowie
- * die weiter hier dokumentierte Methoden für die Kürzung von Bruchzahlen, deren Umwandlung
- * in dezimale Bruchzahl, sowie die weiteren notwendigen manipulations Methoden wie z.B.
- * herausfinden von grösten gemeinsamen Teiler.
+ * die weiter hier dokumentierte Methoden für die Kürzung von Bruchzahlen, deren
+ * Umwandlung in dezimale Bruchzahl, sowie die weiteren notwendigen
+ * manipulations Methoden wie z.B. herausfinden von grösten gemeinsamen Teiler.
  */
 public class Rational extends Zahl {
 
-	/** @param p Zähler als Integer*/
+	/** @param p Zähler als Integer */
 	private int p;
-	/** @param p Nenner als Integer*/
+	/** @param p Nenner als Integer */
 	private int q;
 
-	/**Default Konstruktor */
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(Rational.class);
+
+	/** Default Konstruktor */
 	public Rational() {
 		this.p = 1;
 		this.q = 1;
 
 	}
 
-	/**Konstruktor nimmt eine ganze Zahl als paramater an.
-	 * @param z ein Integer als Zähler 
-	*/
+	/**
+	 * Konstruktor nimmt eine ganze Zahl als paramater an.
+	 * 
+	 * @param z ein Integer als Zähler
+	 */
 	public Rational(int z) {
 		this.p = z;
 		this.q = 1;
 	}
-	/**Konstruktor nimmt zwei ganze Zahlen als Zähler und Nenner.
-	 * @param z ein Integer als Zähler. 
-	 * @param n ein Integer als Nenner. 
-	*/
+
+	/**
+	 * Konstruktor nimmt zwei ganze Zahlen als Zähler und Nenner.
+	 * 
+	 * @param z ein Integer als Zähler.
+	 * @param n ein Integer als Nenner.
+	 */
 	public Rational(int z, int n) {
 		this.p = z;
 		this.q = n;
@@ -41,23 +53,28 @@ public class Rational extends Zahl {
 		kuerzen();
 	}
 
-	/**Konstruktor nimmt ein Object von Typ Rational und setzt die Werte für Zähler und Nenner.
-	 * @param other ein Object von Typ Rational. 
+	/**
+	 * Konstruktor nimmt ein Object von Typ Rational und setzt die Werte für Zähler
+	 * und Nenner.
+	 * 
+	 * @param other ein Object von Typ Rational.
 	 */
 	public Rational(Rational other) {
 		this(other.zaehler(), other.nenner());
 	}
 
-	/**Methode für die Ausgabe eines Bruchs auf Konsole.
-	 * \return String als die Darstellung einer Bruchzahl. 
-	*/
+	/**
+	 * Methode für die Ausgabe eines Bruchs auf Konsole. \return String als die
+	 * Darstellung einer Bruchzahl.
+	 */
 	public void print() {
 		System.out.println(p + "/" + q);
 	}
 
-	/**Überschreiben der Funktion toString für die Ausgabe von Bruchzahl auf die Konsole.
-	 * \return String als die Darstellung einer Bruchzahl.
-	*/
+	/**
+	 * Überschreiben der Funktion toString für die Ausgabe von Bruchzahl auf die
+	 * Konsole. \return String als die Darstellung einer Bruchzahl.
+	 */
 	@Override
 	public String toString() {
 		String text = "";
@@ -65,36 +82,40 @@ public class Rational extends Zahl {
 		return text;
 	}
 
-	/**\return Integer als Zähler */
+	/** \return Integer als Zähler */
 	public int zaehler() {
 		return p;
 	}
 
-	/**\return Integer als Nenner */
+	/** \return Integer als Nenner */
 	public int nenner() {
 		return q;
 	}
 
-	/**Methode für die Addition einer Bruchzahl.
-	 * Dabei wird das Ergebniss auch gekürzt.
-	*/
+	/**
+	 * Methode für die Addition einer Bruchzahl. Dabei wird das Ergebniss auch
+	 * gekürzt.
+	 */
 	public void add(Zahl z) {
+		logger.debug("add() ist gestartet");
 		Rational local = (Rational) z;
 		p = p * local.q + local.p * q;
 		q = q * local.q;
 		kuerzen();
-
+		logger.debug("add() ist beendet");
 	}
-	/**Methode für die Addition einer ganzen Zahl */
+
+	/** Methode für die Addition einer ganzen Zahl */
 	public void add(int i) {
 		Rational local = new Rational(i);
 		add(local);
 		kuerzen();
 	}
 
-	/**Methode für die Subtraktion mit einer Bruchzahl.
-	 * Dabei wird das Ergebnis auch gekürzt.
-	*/
+	/**
+	 * Methode für die Subtraktion mit einer Bruchzahl. Dabei wird das Ergebnis auch
+	 * gekürzt.
+	 */
 	public void sub(Zahl z) {
 		Rational local = (Rational) z;
 		p = p * local.q - local.p * q;
@@ -102,16 +123,17 @@ public class Rational extends Zahl {
 		kuerzen();
 	}
 
-	/**Methode für die Subtraktion mit der ganzen Zahl */
+	/** Methode für die Subtraktion mit der ganzen Zahl */
 	public void sub(int i) {
 		Rational local = new Rational(i);
 		sub(local);
 		kuerzen();
 	}
 
-	/**Methode für die Multiplikation mit einer Bruchzahl.
-	 * Dabei wird das Ergebnis auch gekürzt.
-	*/
+	/**
+	 * Methode für die Multiplikation mit einer Bruchzahl. Dabei wird das Ergebnis
+	 * auch gekürzt.
+	 */
 	public void mul(Zahl z) {
 		Rational local = (Rational) z;
 		p = p * local.p;
@@ -119,16 +141,17 @@ public class Rational extends Zahl {
 		kuerzen();
 	}
 
-	/**Methode für die Multiplikation mit der ganzen Zahl */
+	/** Methode für die Multiplikation mit der ganzen Zahl */
 	public void mul(int i) {
 		Rational local = new Rational(i);
 		mul(local);
 		kuerzen();
 	}
 
-	/**Methode für die Division mit einer Bruchzahl.
-	 * Dabei wird das Ergebnis auch gekürzt.
-	*/
+	/**
+	 * Methode für die Division mit einer Bruchzahl. Dabei wird das Ergebnis auch
+	 * gekürzt.
+	 */
 	public void div(Zahl z) {
 		Rational local = (Rational) z;
 		p = p * local.q;
@@ -136,14 +159,14 @@ public class Rational extends Zahl {
 		kuerzen();
 	}
 
-	/**Methode für die Division mit der ganzen Zahl */
+	/** Methode für die Division mit der ganzen Zahl */
 	public void div(int i) {
 		Rational local = new Rational(i);
 		div(local);
 		kuerzen();
 	}
 
-	/**Methode zum ermitteln von Kehrwert einer Bruchzahl */
+	/** Methode zum ermitteln von Kehrwert einer Bruchzahl */
 	public void kehrwert() {
 		int temp = p;
 		p = q;
@@ -151,12 +174,12 @@ public class Rational extends Zahl {
 		assert (q != 0);
 	}
 
-	/**Methode zum ändern von Vorzeichen einer Zahl*/
+	/** Methode zum ändern von Vorzeichen einer Zahl */
 	public void switchSign() {
 		p = -p;
 	}
 
-	/**Funktion für die Kürzung von Bruchzahl*/
+	/** Funktion für die Kürzung von Bruchzahl */
 	public void kuerzen() {
 		// Vorzeichen merken und Betrag bilden
 		int sign = 1;
@@ -177,18 +200,23 @@ public class Rational extends Zahl {
 
 	}
 
-	/**Methode wandelt eine Bruchzahl in Dezimalbruch.
-	 * \return Double als Dezimalbruch.
+	/**
+	 * Methode wandelt eine Bruchzahl in Dezimalbruch. \return Double als
+	 * Dezimalbruch.
+	 * 
 	 * @return
-	*/
+	 */
 	public double getDoubleWert() {
 		return (double) p / (double) q;
 	}
 
-	/**Funktion überprüft ob eine Bruchzahl in eine ganze/natürliche Zahl umgewandelt werdenn kann.
-	 * \return True für den Fall wenn Zähler durch Nenner ohne Rest geteilt wird.
+	/**
+	 * Funktion überprüft ob eine Bruchzahl in eine ganze/natürliche Zahl
+	 * umgewandelt werdenn kann. \return True für den Fall wenn Zähler durch Nenner
+	 * ohne Rest geteilt wird.
+	 * 
 	 * @return
-	*/
+	 */
 	public boolean isInteger() {
 		if (p % q == 0)
 			return true;
@@ -197,9 +225,8 @@ public class Rational extends Zahl {
 	}
 
 	/**
-	 * Funktion für die Berechnung von grössten gemeinsamen Teiler 
-	 * \return Integer 
-	*/
+	 * Funktion für die Berechnung von grössten gemeinsamen Teiler \return Integer
+	 */
 	private int ggt(int x, int y) {
 
 		while (y > 0) {
@@ -211,9 +238,9 @@ public class Rational extends Zahl {
 	}
 
 	/**
-	 * Funktion für die Addition von zwei Rationalen Zahlen 
-	 * \return Objekt von Typ "Rational"
-	*/
+	 * Funktion für die Addition von zwei Rationalen Zahlen \return Objekt von Typ
+	 * "Rational"
+	 */
 	public Rational add(Rational a, Rational b) {
 
 		a.add(b);
@@ -222,8 +249,8 @@ public class Rational extends Zahl {
 	}
 
 	/**
-	 * Funktion für die Subtraktion von zwei Rationalen Zahlen 
-	 * \return Objekt von Typ "Rational"
+	 * Funktion für die Subtraktion von zwei Rationalen Zahlen \return Objekt von
+	 * Typ "Rational"
 	 */
 	public Rational sub(Rational a, Rational b) {
 
@@ -233,9 +260,9 @@ public class Rational extends Zahl {
 	}
 
 	/**
-	 * Funktion für die Division von zwei Rationalen Zahlen 
-	 * \return Objekt von Typ "Rational"
-	*/
+	 * Funktion für die Division von zwei Rationalen Zahlen \return Objekt von Typ
+	 * "Rational"
+	 */
 	public Rational div(Rational a, Rational b) {
 
 		a.div(b);
@@ -244,8 +271,8 @@ public class Rational extends Zahl {
 	}
 
 	/**
-	 * Funktion für die Multiplikation von zwei Rationalen Zahlen 
-	 * \return Objekt von Typ "Rational"
+	 * Funktion für die Multiplikation von zwei Rationalen Zahlen \return Objekt von
+	 * Typ "Rational"
 	 */
 	public Rational mul(Rational a, Rational b) {
 
@@ -255,56 +282,71 @@ public class Rational extends Zahl {
 	}
 
 	/**
-	 * Methode liest die Eingaben für Zähler und Nenner von Konsole ab und gibt
-	 * ein Ergebnis in Form eines gekürzten Bruches auf die Konsole aus.
-	*/
+	 * Methode liest die Eingaben für Zähler und Nenner von Konsole ab und gibt ein
+	 * Ergebnis in Form eines gekürzten Bruches auf die Konsole aus.
+	 */
 	public void eingabe() {
+
+		logger.info("eingabe() ist gestartet");
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("Geben Sie den Zaehler ein:");
-		int i = sc.nextInt();
-		p = i;
 
-		System.out.println("Geben Sie den Nenner ein:");
-		i = sc.nextInt();
-		q = i;
+		try {
+			int i = sc.nextInt();
+			p = i;
 
-		sc.close();
+			System.out.println("Geben Sie den Nenner ein:");
+			i = sc.nextInt();
+			q = i;
 
-		System.out.println("Ergebniss:");
-		kuerzen();
-		print();
+			sc.close();
 
+			System.out.println("Ergebniss:");
+			kuerzen();
+			print();
+			logger.info("eingabe() ist beendet");
+		} 
+		catch (Exception ex) {
+			logger.error("Bei der Eingabe handelte es sich nicht um eine Zahl\n");
+			ex.printStackTrace();
+		}
+
+		logger.trace("eingabe ist beendet");
 	}
 
 	/**
-	* \mainpage
-	* <h1>SMG ZahlenAufgabe</h1>
-	*
-	* <h3>Einfache Anwendung für die Kürzung von Benutzer eingegebenen Bruchzahl.</h3>
-	*
-	* \image html bruch.png
-	*
-	* Die Anwendung "ZahlenAufgaben" liest nach dem ausführen die Eingaben von Benutzer/in für Zähler und Nenner
-	* und gibt das Ergebnis in Form einer gekürzten Bruchzahls aus. Die Eingabe sowie die Ausgabe erfolgt über die Konsole.
-	*
-	* Die Methoden für die Manipulation mit den Zahlen sowie deren Ein/Ausgabe als auch dieser Text ist in Rational.java zu finden.
-	* Etwas konkreter implementiert Rational.java  vier Grundrechenarten für die Zahlen und ergänzend 
-	* dazu beinhaltet auch die Methoden für die Eingabe und Ausgabe von Zahlen, sowie
- 	* weitere Methoden für die Kürzung von Bruchzahlen, deren Umwandlung
- 	* in eine dezimale Bruchzahl, sowie die weiteren notwendigen manipulations Methoden wie z.B.
-	* herausfinden von grösten gemeinsamen Teiler.
-	*/
+	 * \mainpage
+	 * <h1>SMG ZahlenAufgabe</h1>
+	 *
+	 * <h3>Einfache Anwendung für die Kürzung von Benutzer eingegebenen
+	 * Bruchzahl.</h3>
+	 *
+	 * \image html bruch.png
+	 *
+	 * Die Anwendung "ZahlenAufgaben" liest nach dem ausführen die Eingaben von
+	 * Benutzer/in für Zähler und Nenner und gibt das Ergebnis in Form einer
+	 * gekürzten Bruchzahls aus. Die Eingabe sowie die Ausgabe erfolgt über die
+	 * Konsole.
+	 *
+	 * Die Methoden für die Manipulation mit den Zahlen sowie deren Ein/Ausgabe als
+	 * auch dieser Text ist in Rational.java zu finden. Etwas konkreter
+	 * implementiert Rational.java vier Grundrechenarten für die Zahlen und
+	 * ergänzend dazu beinhaltet auch die Methoden für die Eingabe und Ausgabe von
+	 * Zahlen, sowie weitere Methoden für die Kürzung von Bruchzahlen, deren
+	 * Umwandlung in eine dezimale Bruchzahl, sowie die weiteren notwendigen
+	 * manipulations Methoden wie z.B. herausfinden von grösten gemeinsamen Teiler.
+	 */
 
 	/**
-	 * \example App.java
-	 * \image html bruch_demo.gif "ZahlenAufgabe - Demonstration"
-	 * Dabei handelt es sich um eine Demonstration von Anwendung selbs.
-	 * Die Main - Methode besteht aus Begrüßung und Verabschiedung mittels Konsolenausgabe
-	 * mit System.out.println sowie den Einsatz von Methode eingabe() von der Klasse "Rational".
-	 * Die Methode eingabe() ruft die Methoden, kuerzen() und print() denselben Klassen und beinhaltet
-	 * Logik für die Eingabe von Zähler und Nenner, sowie deren Kürzung und ausgabe aufgrund der Aufruf
-	 * von oben genannten Methoden
+	 * \example App.java \image html bruch_demo.gif "ZahlenAufgabe - Demonstration"
+	 * Dabei handelt es sich um eine Demonstration von Anwendung selbs. Die Main -
+	 * Methode besteht aus Begrüßung und Verabschiedung mittels Konsolenausgabe mit
+	 * System.out.println sowie den Einsatz von Methode eingabe() von der Klasse
+	 * "Rational". Die Methode eingabe() ruft die Methoden, kuerzen() und print()
+	 * denselben Klassen und beinhaltet Logik für die Eingabe von Zähler und Nenner,
+	 * sowie deren Kürzung und ausgabe aufgrund der Aufruf von oben genannten
+	 * Methoden
 	 * 
 	 * 
 	 */
