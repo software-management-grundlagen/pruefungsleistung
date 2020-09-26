@@ -278,6 +278,7 @@ die Build-Plugins eingefügt als auch Doxygen - Plugin. Die Einstellungen fuer D
 Nach der Ueberpruefung der mvn - befehele wurde der RationalTest. java nach src/test/numbers eingefuegt, eine Abhaengigkeit
 fuer junit wurde dementsprechend nach pom.xml eingetragen. Alle Tests sind ohne fehler gelaufen.
 
+## Aenderungsverlauf
 [logback 3638394] "Einfugen von Dependencies fuer Logback Core und API"
  1 file changed, 11 insertions(+)
 
