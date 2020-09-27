@@ -372,3 +372,77 @@ Nach dem speichern von Einstellungen und betaettigen "jetzt bauen" war Build erf
 ![log_6](Jenkins_Screenshots/log_6.png)
 ![log_7](Jenkins_Screenshots/log_7.png)
 ![log_8](Jenkins_Screenshots/log_8.png)
+
+## Zusammenfassung: Aufgabe GitHub Actions
+
+Ein Action wurde erstellt mit folgenden Schritten:
+
+Auf der Repository Seite auf GitHub nach dem Uebergehen zur "Actions" - Tab werden die Actions Starter workflows vorgeschlagen.
+Es wurde eine Workflow "Java with Maven" zum Generieren von Action ausgewaehlt.
+Als naechstes uebergeht man zur Konfiguration mit *.yaml Datei, die fuer das Build konfiguriert werden soll.
+
+Die Einstellungen wurden so aufgebaut, damit ein Build bei der "push" und/oder "pull_request", fuer branch "master", statfindet.
+
+    on:
+        push:
+            branches: [ master ]
+        pull_request:
+            branches: [ master ]
+
+    jobs:
+        build:
+        
+Dabei als virtuelle Maschine wurde ubuntu ausgewaehlt
+
+    runs-on: ubuntu-latest
+    
+Als nachstes wurden die Build Schritte konfiguriert.
+
+Enstellungen fue die JDK - Version
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.11
+
+Als erstes sollte das Projekt/Arbeitsumgebung von zuvor generierten Dateien (z.B target) gesaubert werden dafuer wurde ein Schritt fuer "mvn clean gemacht".
+Da das Project selbst in einem Unterordner sich befindet wurde ein Zielordner extra mit "working-directory" eingestellt.
+
+     - name: Clean Workspace 
+       working-directory: SMG_ZahlenAufgabe
+       run: mvn clean
+
+Als naechstes sollte man alle fuer das Build notwendige Maven-Dependencies mit "mvn install" hollen .
+
+    - name: Install Dependencies
+      working-directory: SMG_ZahlenAufgabe
+      run: mvn install 
+      
+Nachdem alle Packete runtergeladen sind sollte es mit "mvn compile" kompiliert werden.
+
+    - name: Compile
+      working-directory: SMG_ZahlenAufgabe
+      run: mvn compile
+      
+Nachdem kompilieren von Quelcode sollte auch mit "mvn doxygen:generate" eine Dokumentation erstellet werden.
+
+    - name: Generate Documentation
+      working-directory: SMG_ZahlenAufgabe
+      run: mvn doxygen:generate
+      
+Nach dem beenden des Kompilierens und Erstellen einer Dokumentation wurde mit unten stehender Einstellung ein Release/Tag generiert.
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      with:
+        tag_name: release5
+        release_name: release5          
+        draft: false
+        prerelease: false
+        
+Insgesamt wurden vier Commits(in Falle der Actions Builds) gemacht zwei davon waren erfolgreich, einschliesslich letzter Commit.
