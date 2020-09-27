@@ -364,3 +364,11 @@ mit Befehl auszufueren also:
 
 Nach dem speichern von Einstellungen und betaettigen "jetzt bauen" war Build erfolgreich. Unten sind die Screenschots von letzten erfolreichen Build hinzugefuegt.
 
+![log_1](Jenkins_Screenshots/log_1.png)
+![log_2](Jenkins_Screenshots/log_2.png)
+![log_3](Jenkins_Screenshots/log_3.png)
+![log_4](Jenkins_Screenshots/log_4.png)
+![log_5](Jenkins_Screenshots/log_5.png)
+![log_6](Jenkins_Screenshots/log_6.png)
+![log_7](Jenkins_Screenshots/log_7.png)
+![log_8](Jenkins_Screenshots/log_8.png)
