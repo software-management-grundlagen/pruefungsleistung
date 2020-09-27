@@ -316,7 +316,30 @@ Als erstes wurden die Abhaengigkeiten fuer LOGBack und slf4j in pom.xml integrie
 (Level: INFO) erstellt. Das Root - Level ist auf debug gestellt. Logger wurden in Methoden ggt(), kuerzen() und eingabe() in
 Klasse Rational und einschliesslich in main eingefuegt (Da diese Methoden fuer die Anwendung relevant sind). Logger wurde erstmal auf Konsole getestet und dannach wurde die logback.xml fuer die logging in log - datei angepasst. Log wird nach 
 Einstellungen in log Verzeichnis gespeichert, diese ist in .gitignore eingetragen.
+Nach dem pushen des Commits nach GitHub wurde das Branch "logback" zu "master" zusammengefuert (merge) -> "git checkout master" und dannach "git merge origin logback".
+Da jedes branch, nach dem Erleddigen des Aufgabenteils, aufgabenabhaengig, erstellt wurden, beinhaltet origin/logback auch alle commits von vorherigen Branches.
 
 ## Zusammenfassung: Aufgabe Jenkins
-
+Fuer das Anlegen des Workspaces wurden folgende Schritte angenommen:
+a) Element anlegen -> Maven-Project markiert und "SMG" als das Element - Name eingegeben.
+b) Einstellungen:
+aa) In "General" wurde "GitHub-Project" ausgewaehlt und "https://github.com/Informatik-HS-KL/SMG-Chouliak.git/" als URL eingegeben.
+ab) In "Source-Code-Management" wurde "Git" markiert und auch die Git-Repository, diesmal mit Credentials, wie in aa eingegeben. Dabei wurde automatisch "master" als "Branches to Build" vervollstaendigt.
+ac) In "Build-Ausloeser" fuer "Source Code Management System abfragen" wurde der Zeitplan mit "H/2 * * * *" eingestellet, da ich ein Problemm mit Doxygen und Maven-Build hatte (Wird spaeter in ad beschrieben) hatte ich mit Doxyfile und pom.xml
+rumgespielt sollten die Repository mit Workspace auch synchronisiert werden.
+ad) In "Pre-Build-Schritte" ist aktuell "Shell ausfueren" mit Befehl "cd SMG_ZahlenAufgabe && mvn clean install", als Schritt, markiert. Grund dafuer ist das beim clonnen von Repository es sich um einen Ordner "SMG-Chouliak" handelt, mit dem 
+Projekt "SMG_ZahlenAufgabe" als Subordner alle benoetigten Einstellungen wie "Doxyfile" und "pom.xml" befinden sich in classpath root, also in Project root. Trotzt passenden Einstellungen fuer Pfad zu Doxyfile z.B. "SMG_ZahlenAufgabe/Doxyfile"
+"SMG_ZahlenAufgabe/Doxyfile" fuerte es zu Buildfehler bei Doxygen wie:
+    "error: tag OUTPUT_DIRECTORY: Output directory 'target/site' does not exist and cannot be created"
+    "warning: tag INPUT: input source 'src/main/java' does not exist"
+    "warning: The selected output language "german" has not been updated"
+und Buildfehler beim versuch  das Befehl "mvn doxygen:generate" als "Pre-Build-Schritte" wie o.g. einzustellen:
+    "[ [1;31mERROR [m] No plugin found for prefix 'doxygen' in the current project and in the plugin groups [org.apache.maven.plugins, org.codehaus.mojo] available from the repositories [local ({my repository path}), central (https://repo.maven.apache.org/maven2)]"
+Grund dafuer war, dass Jenkins das Build aus Workspace ausfuert und in diesem Fall ist der Ordner "SMG-Chouliak" ein "Root", d.h. waehrend des Build - Schritt mit vorherigen einstellungen fuer Doxyfile und pom.xml, ausgefuert wird,
+werden die Einstellungen gefunden, jedoch kommt es zum "Konflikt" weil alle Quellen sich im "SMG_ZahlenAufgabe" - Ordner befinden und dieses ist ein Subordner und weil "SMG-Chouliak" Ordner ein "Einsprungspunkt"/Workspace ist, werden die
+in Konfiguration eingetragene Daten waehrend des Builds nicht gefunden, was zum Buildfehler fuert. Als einfachste Loesung wurde entschieden script Befehle fuer Directory - Wechsel auszufueren und von gewechselte Directory das Build Vorgang
+mit Befehl auszufueren also:
+    "Pre-Build-Schritte" -> "cd SMG_ZahlenAufgabe && mvn clean install"
+    "Post-Build-Schritte" -> "cd SMG_ZahlenAufgabe && doxygen Doxyfile"
+Nach dem speichern von Einstellungen und betaettigen "jetzt bauen" war Build erfolgreich. Unten sind die Screenschots von letzten erfolreichen Build hinzugefuegt.
 
